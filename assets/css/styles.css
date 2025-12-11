@@ -1,13 +1,14 @@
 :root {
-  --bg: #f7f4ef;
+  --bg: #f3eee4;
   --panel: #ffffff;
-  --ink: #1f2328;
-  --muted: #555b65;
+  --ink: #1c140e;
+  --muted: #5b5854;
   --accent: #d57938;
-  --accent-dark: #b85d22;
-  --line: #e5dfd4;
-  --success: #2f855a;
-  --shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+  --accent-dark: #b7541c;
+  --line: #e0d6c6;
+  --warm-alt: #f8f2e9;
+  --charcoal: #1f1a16;
+  --shadow: 0 18px 48px rgba(20, 16, 13, 0.12);
   --motion-duration: 0.85s;
   --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -26,9 +27,8 @@ body {
   margin: 0;
   font-family: "Source Sans Pro", "Segoe UI", sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at 10% 20%, rgba(213, 121, 56, 0.05), transparent 20%),
-    radial-gradient(circle at 90% 10%, rgba(47, 133, 90, 0.08), transparent 25%),
-    var(--bg);
+  background: radial-gradient(circle at 12% 15%, rgba(213, 121, 56, 0.12), transparent 32%),
+    radial-gradient(circle at 85% 8%, rgba(47, 133, 90, 0.12), transparent 35%), var(--bg);
   line-height: 1.6;
   min-height: 100vh;
 }
@@ -112,9 +112,36 @@ ul {
   color: var(--accent-dark);
 }
 
+.hero .link-quiet {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero .link-quiet:hover {
+  color: #fff;
+}
+
 .hero {
   padding: 0 0 3rem;
-  background: linear-gradient(135deg, rgba(213, 121, 56, 0.08), rgba(47, 133, 90, 0.06)), var(--bg);
+  background: linear-gradient(145deg, rgba(31, 26, 22, 0.94), rgba(51, 42, 34, 0.85)), var(--charcoal);
+  color: #fefcfa;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(20, 16, 13, 0.82) 70%),
+    repeating-linear-gradient(120deg, rgba(196, 138, 90, 0.55) 0, rgba(196, 138, 90, 0.55) 32px, rgba(173, 120, 76, 0.55) 32px, rgba(173, 120, 76, 0.55) 64px);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .topbar {
@@ -138,18 +165,23 @@ ul {
 .brand-name {
   font-weight: 700;
   font-size: 1.05rem;
+  color: #fef2e6;
 }
 
 .brand-sub {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+}
+
+.brand-sub strong {
+  color: #fff;
 }
 
 .logo-mark {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: linear-gradient(160deg, var(--accent), var(--accent-dark));
   color: #fff;
   display: grid;
@@ -174,7 +206,7 @@ ul {
 }
 
 .nav a {
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   padding: 0.4rem 0.1rem;
 }
@@ -182,6 +214,10 @@ ul {
 .nav a:hover,
 .nav a:focus-visible {
   color: var(--accent-dark);
+}
+
+.nav.open a {
+  color: var(--ink);
 }
 
 .topbar-actions {
@@ -221,10 +257,12 @@ ul {
 .hero-copy h1 {
   font-size: 2.4rem;
   line-height: 1.15;
+  color: #fff;
 }
 
 .hero-copy .lede {
   font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .hero-actions {
@@ -244,17 +282,17 @@ ul {
 }
 
 .hero-badges li {
-  background: #fff;
-  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 0.5rem 0.9rem;
   border-radius: 999px;
   font-weight: 600;
-  color: var(--muted);
+  color: #fff;
 }
 
 .hero-card {
-  background: #fff;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
   box-shadow: var(--shadow);
   padding: 1.4rem;
   display: grid;
@@ -304,10 +342,11 @@ ul {
 
 .section {
   padding: 3.5rem 1.4rem;
+  background: var(--bg);
 }
 
 .section.alt {
-  background: #fff;
+  background: var(--warm-alt);
 }
 
 .section-header {
@@ -325,7 +364,7 @@ ul {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 700;
-  color: var(--muted);
+  color: var(--accent);
   font-size: 0.85rem;
   margin: 0 0 0.6rem 0;
 }
@@ -342,11 +381,11 @@ ul {
 }
 
 .card {
-  background: #fff;
-  border-radius: 10px;
+  background: var(--panel);
+  border-radius: 8px;
   padding: 1.3rem 1.4rem;
   border: 1px solid var(--line);
-  box-shadow: 0 12px 32px rgba(31, 35, 40, 0.05);
+  box-shadow: 0 12px 32px rgba(28, 20, 14, 0.08);
   animation: fadeUp var(--motion-duration) var(--motion-ease) both;
 }
 
@@ -365,10 +404,10 @@ ul {
 
 .project-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--line);
-  box-shadow: 0 16px 40px rgba(31, 35, 40, 0.07);
+  box-shadow: 0 16px 34px rgba(28, 20, 14, 0.12);
   display: grid;
   grid-template-rows: auto 1fr;
   animation: fadeUp calc(var(--motion-duration) + 0.05s) var(--motion-ease) both;
@@ -376,10 +415,16 @@ ul {
 
 .project-photo {
   height: 220px;
-  background: #f8f5ef;
+  background: var(--warm-alt);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+}
+
+.project-photo picture {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .project-photo img {
@@ -397,7 +442,7 @@ ul {
   margin-top: 0.6rem;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: rgba(213, 121, 56, 0.12);
+  background: rgba(213, 121, 56, 0.18);
   color: var(--accent-dark);
   font-weight: 700;
   font-size: 0.9rem;
@@ -416,7 +461,7 @@ ul {
   gap: 0.9rem;
   padding: 1rem 1.1rem;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   box-shadow: 0 10px 24px rgba(31, 35, 40, 0.04);
   animation: fadeUp calc(var(--motion-duration) + 0.1s) var(--motion-ease) both;
@@ -439,7 +484,7 @@ ul {
 
 .quote-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 1.4rem;
   border: 1px solid var(--line);
   box-shadow: 0 14px 32px rgba(31, 35, 40, 0.05);
@@ -452,7 +497,7 @@ ul {
 
 .gallery-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   box-shadow: 0 12px 30px rgba(31, 35, 40, 0.05);
   overflow: hidden;
@@ -463,6 +508,10 @@ ul {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.gallery-card picture {
+  display: block;
 }
 
 .gallery-card figcaption {
@@ -482,14 +531,14 @@ ul {
 }
 
 .contact {
-  background: #fffaf7;
+  background: #fffaf5;
 }
 
 .contact-card {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   display: grid;
@@ -528,7 +577,7 @@ ul {
 .contact-form input,
 .contact-form textarea {
   padding: 0.8rem 0.9rem;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--line);
   font-family: inherit;
   font-size: 1rem;
@@ -550,8 +599,8 @@ ul {
 }
 
 .footer {
-  background: #0f1114;
-  color: #e9edf2;
+  background: #0f0d0b;
+  color: #f0ede8;
   padding: 1.6rem 1.4rem 2rem;
 }
 
@@ -571,7 +620,7 @@ ul {
 
 .footer .brand-name,
 .footer .brand-sub {
-  color: #e9edf2;
+  color: #f0ede8;
 }
 
 .footer-actions {
@@ -582,7 +631,7 @@ ul {
 }
 
 .footer-note {
-  color: #c1c7d0;
+  color: #cfc7bd;
   margin: 0;
 }
 
@@ -596,11 +645,7 @@ ul {
 }
 
 .footer .link-quiet {
-  color: #e9edf2;
-}
-
-.brand-sub strong {
-  color: var(--ink);
+  color: #f0ede8;
 }
 
 .project-card:nth-child(2),
@@ -649,10 +694,10 @@ body.nav-open {
     position: sticky;
     top: 0;
     z-index: 1200;
-    background: rgba(247, 244, 239, 0.95);
+    background: rgba(10, 9, 8, 0.92);
     backdrop-filter: blur(8px);
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid rgba(229, 223, 212, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .brand-sub {
