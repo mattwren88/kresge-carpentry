@@ -4,10 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeNav = () => {
     if (nav) nav.classList.remove("open");
+    document.body.classList.remove("nav-open");
+    if (navToggle) navToggle.setAttribute("aria-expanded", "false");
   };
 
   if (navToggle && nav) {
-    navToggle.addEventListener("click", () => nav.classList.toggle("open"));
+    navToggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      const isOpen = nav.classList.contains("open");
+      document.body.classList.toggle("nav-open", isOpen);
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    nav.addEventListener("click", (event) => {
+      if (event.target === nav) {
+        closeNav();
+      }
+    });
   }
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
