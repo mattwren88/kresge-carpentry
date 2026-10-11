@@ -108,7 +108,12 @@ add_action(
 							return $email ? 'mailto:' . $email : '';
 						default:
 							$value = kresge_business( $key );
-							return '' !== $value ? esc_html( $value ) : esc_html__( 'Add in Settings → Business details', 'kresge-core' );
+							if ( '' !== $value ) {
+								return esc_html( $value );
+							}
+							// Only admins see the hint; for visitors an empty value
+							// hides the bound button (core skips empty button text).
+							return current_user_can( 'manage_options' ) ? esc_html__( 'Add in Settings → Business details', 'kresge-core' ) : '';
 					}
 				},
 			)

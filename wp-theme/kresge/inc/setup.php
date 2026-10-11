@@ -24,3 +24,20 @@ add_action(
 		wp_enqueue_style( 'kresge-theme', get_theme_file_uri( 'assets/css/theme.css' ), array(), (string) filemtime( get_theme_file_path( 'assets/css/theme.css' ) ) );
 	}
 );
+
+/*
+ * The Work section queries the `project` post type from the Kresge Core
+ * plugin. Without the plugin, core silently falls back to blog posts; show
+ * nothing instead.
+ */
+add_filter(
+	'query_loop_block_query_vars',
+	function ( $query, $block ) {
+		if ( 'project' === ( $block->context['query']['postType'] ?? '' ) && ! post_type_exists( 'project' ) ) {
+			$query['post__in'] = array( 0 );
+		}
+		return $query;
+	},
+	10,
+	2
+);

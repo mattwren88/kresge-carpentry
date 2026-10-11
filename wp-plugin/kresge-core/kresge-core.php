@@ -17,3 +17,13 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/inc/post-types.php';
 require_once __DIR__ . '/inc/business-details.php';
 require_once __DIR__ . '/inc/fluent-forms-fallback.php';
+
+// /projects/ URLs need fresh rewrite rules whenever the post type appears or goes.
+register_activation_hook(
+	__FILE__,
+	function () {
+		kresge_register_post_types();
+		flush_rewrite_rules();
+	}
+);
+register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );

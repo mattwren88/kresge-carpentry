@@ -3,13 +3,13 @@
  * Title: FAQ
  * Slug: kresge/faq
  * Categories: kresge
- * Description: Common questions as expandable rows. Questions can be added or removed.
+ * Description: Common questions as expandable rows. Questions can be added, removed and reordered; the heading stays put.
  *
  * @package kresge
  */
 
 ?>
-<!-- wp:group {"tagName":"section","anchor":"faq","className":"kc-section","align":"full","templateLock":"contentOnly","layout":{"type":"constrained","contentSize":"760px"}} -->
+<!-- wp:group {"tagName":"section","anchor":"faq","className":"kc-section","align":"full","templateLock":"all","layout":{"type":"constrained","contentSize":"760px"}} -->
 <section class="wp-block-group alignfull kc-section" id="faq">
 	<!-- wp:group {"className":"kc-section-header","layout":{"type":"constrained","contentSize":"900px"}} -->
 	<div class="wp-block-group kc-section-header">

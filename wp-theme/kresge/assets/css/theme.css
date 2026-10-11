@@ -534,6 +534,12 @@ a:focus-visible {
 	color: #2A5438;
 }
 
+/* Empty states: no orphaned headings when there are too few projects. */
+.kc-subhead:has(+ .kc-projects-query:not(:has(.kc-project-card))),
+.kc-section:has(.kc-featured-query):not(:has(.kc-featured)) {
+	display: none;
+}
+
 /* ---------- Process ---------- */
 
 .kc-timeline {
@@ -739,6 +745,12 @@ a:focus-visible {
 
 .kc-contact .kc-text-link .wp-block-button__link:hover {
 	color: var(--wp--preset--color--sage-dark);
+}
+
+/* A detail left blank in Settings renders nothing for visitors; drop its label too. */
+.kc-contact-label:has(+ p.kc-contact-value:empty),
+.kc-contact-label:has(+ .wp-block-buttons.kc-contact-value:not(:has(.wp-block-button))) {
+	display: none;
 }
 
 /* Fluent Forms fields, matched to the theme */
