@@ -1,0 +1,303 @@
+/*
+ * Kresge Carpentry — component styles.
+ * Colors, fonts and spacing come from theme.json presets; this file handles
+ * layout and components the block editor can't express. Values are ported
+ * from the static site's assets/css/styles.css.
+ */
+
+:root {
+	--kc-ink-on-dark: #F0EDE8;
+	--kc-ink-on-dark-lede: rgba(240, 237, 232, 0.82);
+	--kc-ink-on-dark-quiet: #9AAD9C;
+	--kc-ink-on-dark-faint: rgba(255, 255, 255, 0.85);
+	--kc-line-on-dark: rgba(255, 255, 255, 0.3);
+	--kc-accent-soft: rgba(74, 124, 89, 0.15);
+	--kc-accent-tint: rgba(74, 124, 89, 0.2);
+	--kc-accent-edge: rgba(74, 124, 89, 0.25);
+	--kc-radius-sm: 6px;
+	--kc-radius-md: 8px;
+	--kc-radius-lg: 12px;
+	--kc-shadow-sm: 0 12px 30px rgba(28, 43, 30, 0.05);
+	--kc-shadow-md: 0 14px 32px rgba(28, 43, 30, 0.06);
+	--kc-shadow-overlay: 0 18px 48px rgba(28, 43, 30, 0.1);
+	--kc-phone-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3.5c0-.5.4-.9.9-.9h2.2c.4 0 .7.3.8.6l.7 2.6c.1.3 0 .6-.3.8L6 7.5c.8 1.7 2 3 3.5 3.7l1.1-1.4c.2-.2.5-.3.8-.3l2.6.6c.4.1.6.4.6.8v2.2c0 .5-.4.9-.9.9C7.5 14 2 8.5 3 3.5z'/%3E%3C/svg%3E");
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+:where(.wp-site-blocks) > * {
+	margin-block-start: 0;
+}
+
+/* ---------- Shared bits ---------- */
+
+.kc-eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	font-size: 0.85rem;
+	color: var(--wp--preset--color--sage-dark);
+	margin: 0 0 0.6rem;
+}
+
+.wp-block-button__link:focus-visible,
+a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--sage);
+	outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+
+.kc-header {
+	color: var(--kc-ink-on-dark);
+	padding-block: 1.1rem;
+}
+
+.kc-topbar {
+	gap: 1.2rem;
+}
+
+.kc-brand {
+	gap: 0.7rem;
+}
+
+.kc-logo {
+	flex-shrink: 0;
+}
+
+.kc-logo img {
+	border-radius: 10px;
+	width: 44px;
+	height: 44px;
+	object-fit: cover;
+}
+
+.kc-brand-text {
+	gap: 0.15rem;
+}
+
+.kc-brand-name,
+.kc-brand-name a {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.15rem;
+	line-height: 1.1;
+	color: var(--kc-ink-on-dark);
+	margin: 0;
+	white-space: nowrap;
+}
+
+.kc-brand-sub {
+	margin: 0;
+	font-size: 0.78rem;
+	letter-spacing: 0.02em;
+	color: var(--kc-ink-on-dark-faint);
+}
+
+.kc-nav .wp-block-navigation-item__content {
+	color: var(--kc-ink-on-dark-faint);
+	font-weight: 600;
+	padding: 0.4rem 0.1rem;
+	position: relative;
+}
+
+.kc-nav .wp-block-navigation-item__content::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--wp--preset--color--sage);
+	transform: scaleX(0);
+	transition: transform 0.25s ease;
+}
+
+.kc-nav .wp-block-navigation-item__content:hover,
+.kc-nav .wp-block-navigation-item__content:focus-visible {
+	color: #fff;
+}
+
+.kc-nav .wp-block-navigation-item__content:hover::after,
+.kc-nav .wp-block-navigation-item__content:focus-visible::after {
+	transform: scaleX(1);
+}
+
+.kc-nav .wp-block-navigation__container {
+	gap: 1.4rem;
+}
+
+.kc-nav .wp-block-navigation__responsive-container-open {
+	color: #fff;
+	min-width: 44px;
+	min-height: 44px;
+	align-items: center;
+	justify-content: center;
+}
+
+.kc-nav .wp-block-navigation__responsive-container.is-menu-open {
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--forest);
+	padding: 1.5rem;
+}
+
+.kc-nav .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--forest);
+	font-size: 1.25rem;
+}
+
+.kc-nav .wp-block-navigation__responsive-container-close {
+	min-width: 44px;
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.kc-topbar-actions {
+	gap: 0.9rem;
+	align-items: center;
+}
+
+.kc-phone .wp-block-button__link,
+.kc-text-link .wp-block-button__link {
+	background: none;
+	color: var(--kc-ink-on-dark-faint);
+	padding: 0.4rem 0.2rem;
+	font-size: 0.92rem;
+	font-variant-numeric: tabular-nums;
+	box-shadow: none;
+}
+
+.kc-phone .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+.kc-phone .wp-block-button__link::before {
+	content: "";
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+	background: currentColor;
+	-webkit-mask: var(--kc-phone-icon) center / contain no-repeat;
+	mask: var(--kc-phone-icon) center / contain no-repeat;
+}
+
+.kc-phone .wp-block-button__link:hover,
+.kc-text-link .wp-block-button__link:hover {
+	background: none;
+	color: #fff;
+}
+
+.kc-quote-btn .wp-block-button__link {
+	box-shadow: 0 2px 8px rgba(28, 43, 30, 0.15);
+	transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.kc-quote-btn .wp-block-button__link:hover {
+	transform: translateY(-1px);
+}
+
+/* ---------- Footer ---------- */
+
+.kc-footer {
+	color: #E8EDE5;
+	padding-block: 1.6rem 2rem;
+}
+
+.kc-footer-inner {
+	gap: 1rem;
+}
+
+.kc-footer .kc-brand-name,
+.kc-footer .kc-brand-sub {
+	color: #E8EDE5;
+}
+
+.kc-footer-actions {
+	gap: 0.9rem;
+	align-items: center;
+}
+
+.kc-ghost .wp-block-button__link {
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: transparent;
+}
+
+.kc-ghost .wp-block-button__link:hover {
+	border-color: #fff;
+	background: transparent;
+}
+
+.kc-footer .kc-text-link .wp-block-button__link {
+	color: #E8EDE5;
+	font-weight: 600;
+}
+
+/* ---------- Responsive: header ---------- */
+
+@media (max-width: 900px) {
+	header.wp-block-template-part {
+		position: sticky;
+		top: var(--wp-admin--admin-bar--height, 0px);
+		z-index: 100;
+	}
+
+	.kc-header {
+		padding-block: 0.8rem;
+		background: rgba(20, 30, 22, 0.92);
+		backdrop-filter: blur(8px);
+		border-bottom: 1px solid var(--kc-accent-edge);
+	}
+
+	.kc-header .kc-brand-sub,
+	.kc-topbar .kc-quote-btn {
+		display: none;
+	}
+
+	/* Core switches to the overlay at 600px; the topbar needs it from 900px. */
+	.kc-nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.kc-nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+
+	.kc-nav {
+		order: 3;
+		flex: 0 0 auto;
+	}
+
+	.kc-topbar-actions {
+		margin-left: auto;
+	}
+}
+
+@media (max-width: 600px) {
+	/* Icon-only call button; the number stays in the accessible name. */
+	.kc-phone .wp-block-button__link {
+		min-width: 44px;
+		min-height: 44px;
+		justify-content: center;
+		padding: 0;
+		font-size: 0;
+	}
+
+	.kc-phone .wp-block-button__link::before {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		scroll-behavior: auto !important;
+		animation-duration: 0.001ms !important;
+		transition-duration: 0.001ms !important;
+	}
+}

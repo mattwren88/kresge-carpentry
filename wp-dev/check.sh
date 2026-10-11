@@ -11,4 +11,12 @@ ok() { echo "ok: $1"; }
 home=$(get /)
 grep -q '<title>Kresge Carpentry' <<<"$home" || fail "home title"; ok "home title"
 
+check_header() {
+	grep -q 'class="[^"]*kc-header' <<<"$home" || fail "header part"
+	grep -q 'wp-block-navigation' <<<"$home" || fail "navigation"
+	grep -q 'kresge/assets/css/theme.css' <<<"$home" || fail "theme.css enqueued"
+	grep -q 'class="[^"]*kc-footer' <<<"$home" || fail "footer part"
+	ok "header, nav, footer, theme.css"
+}
+
 for check in ${@+"$@"}; do "check_$check"; done
