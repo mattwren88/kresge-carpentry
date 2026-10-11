@@ -1,0 +1,12 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "steps": [
+    { "step": "login" },
+    { "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "fluentform" } },
+    { "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "theme-check" } },
+    { "step": "activateTheme", "themeFolderName": "kresge" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/wp-content/kresge-dev/seed.php';" }
+  ]
+}
