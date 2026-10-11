@@ -19,4 +19,13 @@ check_header() {
 	ok "header, nav, footer, theme.css"
 }
 
+check_projects() {
+	local json
+	json=$(get '/?rest_route=/wp/v2/project&_fields=title,featured_media,project_type')
+	[ "$(grep -o '"title"' <<<"$json" | wc -l | tr -d ' ')" = 4 ] || fail "4 projects ($json)"
+	grep -q '"featured_media":0' <<<"$json" && fail "every project has an image"
+	grep -q '^\[{"title":{"rendered":"Elevated deck' <<<"$json" || fail "newest project is the featured one"
+	ok "4 seeded projects with images, newest first"
+}
+
 for check in ${@+"$@"}; do "check_$check"; done

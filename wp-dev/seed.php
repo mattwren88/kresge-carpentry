@@ -36,3 +36,63 @@ function kresge_seed_image( $file, $alt = '' ) {
 }
 
 update_option( 'site_logo', kresge_seed_image( 'kresge-logo.jpg', 'Kresge Carpentry' ) );
+
+// Pretty permalinks so /projects/ and /#section links work.
+update_option( 'permalink_structure', '/%postname%/' );
+flush_rewrite_rules();
+
+// Clear WordPress's sample content.
+foreach ( get_posts( array( 'post_type' => array( 'post', 'page' ), 'numberposts' => -1, 'post_status' => 'any' ) ) as $kresge_post ) {
+	wp_delete_post( $kresge_post->ID, true );
+}
+
+foreach ( array( 'Decks', 'Structural', 'Repairs', 'Outdoor living' ) as $kresge_term ) {
+	wp_insert_term( $kresge_term, 'project_type' );
+}
+
+// Oldest first; the last one is newest and becomes the featured project.
+$kresge_projects = array(
+	array(
+		'title'   => 'Deck post replacement',
+		'type'    => 'Repairs',
+		'image'   => 'kresge-facebook-1137549951504555.jpg',
+		'alt'     => 'New pressure-treated support post installed under an existing second-story deck with iron railings.',
+		'excerpt' => 'Swapped a failing support under a second-story deck for a new pressure-treated post, with the deck above left in use.',
+	),
+	array(
+		'title'   => 'Covered porch decking',
+		'type'    => 'Decks',
+		'image'   => 'kresge-facebook-1137549974837886.jpg',
+		'alt'     => 'Covered porch with gray composite decking, a contrasting border board, and white railings with black balusters.',
+		'excerpt' => 'Composite boards with a contrasting picture-frame border, white rail with black balusters, and clean ceiling trim.',
+	),
+	array(
+		'title'   => 'Porch roof shoring',
+		'type'    => 'Structural',
+		'image'   => 'kresge-facebook-1137550184837865.jpg',
+		'alt'     => 'Porch roof held up by temporary timber shoring while the deck structure underneath is rebuilt.',
+		'excerpt' => 'Temporary shoring carried the roof while we pulled the old supports and framed a new deck underneath.',
+	),
+	array(
+		'title'   => 'Elevated deck & stair rebuild',
+		'type'    => 'Outdoor living',
+		'image'   => 'kresge-facebook-1088531793073038.jpg',
+		'alt'     => 'Rebuilt second-story covered deck with gray composite decking, white railings with black balusters, and a new stair run down to a stamped concrete patio.',
+		'excerpt' => 'Rebuilt a second-story covered deck from the posts up: new pressure-treated posts on fresh footings, low-maintenance composite decking with a picture-frame border, and a full stair run down to the patio.',
+	),
+);
+
+foreach ( $kresge_projects as $kresge_i => $kresge_project ) {
+	$kresge_id = wp_insert_post(
+		array(
+			'post_type'    => 'project',
+			'post_status'  => 'publish',
+			'post_title'   => $kresge_project['title'],
+			'post_excerpt' => $kresge_project['excerpt'],
+			'post_content' => '<!-- wp:paragraph --><p>' . esc_html( $kresge_project['excerpt'] ) . '</p><!-- /wp:paragraph -->',
+			'post_date'    => gmdate( 'Y-m-d H:i:s', time() - ( count( $kresge_projects ) - $kresge_i ) * WEEK_IN_SECONDS ),
+		)
+	);
+	set_post_thumbnail( $kresge_id, kresge_seed_image( $kresge_project['image'], $kresge_project['alt'] ) );
+	wp_set_object_terms( $kresge_id, $kresge_project['type'], 'project_type' );
+}
