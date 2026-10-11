@@ -28,4 +28,13 @@ check_projects() {
 	ok "4 seeded projects with images, newest first"
 }
 
+check_business() {
+	grep -q 'href="tel:5551234567"' <<<"$home" || fail "phone binding renders tel: link"
+	grep -q 'href="mailto:hello@kresgecarpentry.com"' <<<"$home" || fail "email binding renders mailto: link"
+	grep -q 'Call us' <<<"$home" && fail "static fallback replaced"
+	grep -q '"@type":"LocalBusiness"' <<<"$home" || fail "LocalBusiness JSON-LD"
+	grep -q '"telephone":"(555) 123-4567"' <<<"$home" || fail "JSON-LD telephone"
+	ok "business bindings + JSON-LD"
+}
+
 for check in ${@+"$@"}; do "check_$check"; done

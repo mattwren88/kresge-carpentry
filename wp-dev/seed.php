@@ -96,3 +96,12 @@ foreach ( $kresge_projects as $kresge_i => $kresge_project ) {
 	set_post_thumbnail( $kresge_id, kresge_seed_image( $kresge_project['image'], $kresge_project['alt'] ) );
 	wp_set_object_terms( $kresge_id, $kresge_project['type'], 'project_type' );
 }
+
+update_option(
+	'kresge_business',
+	array(
+		'phone'        => '(555) 123-4567',
+		'email'        => 'hello@kresgecarpentry.com',
+		'service_area' => 'Local towns within ~30 mi',
+	)
+);
