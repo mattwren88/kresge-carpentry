@@ -11,4 +11,4 @@ ok() { echo "ok: $1"; }
 home=$(get /)
 grep -q '<title>Kresge Carpentry' <<<"$home" || fail "home title"; ok "home title"
 
-for check in "${@}"; do "check_$check"; done
+for check in ${@+"$@"}; do "check_$check"; done
