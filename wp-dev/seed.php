@@ -106,8 +106,9 @@ update_option(
 	)
 );
 
-// Homepage: the theme's section patterns, in order. The editor turns each
-// pattern reference into editable blocks the first time the owner opens it.
+// Homepage: the theme's section patterns, expanded to plain blocks. (A
+// pattern reference would be tagged with its pattern name in the editor, and
+// core then forces content-only editing on it, overriding the theme's locks.)
 $kresge_home = wp_insert_post(
 	array(
 		'post_type'    => 'page',
@@ -116,7 +117,7 @@ $kresge_home = wp_insert_post(
 		'post_content' => implode(
 			"\n\n",
 			array_map(
-				fn( $slug ) => '<!-- wp:pattern {"slug":"kresge/' . $slug . '"} /-->',
+				fn( $slug ) => WP_Block_Patterns_Registry::get_instance()->get_registered( 'kresge/' . $slug )['content'],
 				array( 'hero', 'trust-strip', 'services', 'work', 'process', 'testimonial', 'faq', 'contact' )
 			)
 		),

@@ -534,8 +534,14 @@ a:focus-visible {
 	color: #2A5438;
 }
 
-/* Empty states: no orphaned headings when there are too few projects. */
-.kc-subhead:has(+ .kc-projects-query:not(:has(.kc-project-card))),
+/*
+ * Empty states: no orphaned headings when there are too few projects.
+ * (:has() can't be nested, so these test from the section down.)
+ */
+.kc-section:has(.kc-projects-query):not(:has(.kc-project-card)) .kc-subhead {
+	display: none;
+}
+
 .kc-section:has(.kc-featured-query):not(:has(.kc-featured)) {
 	display: none;
 }
@@ -748,8 +754,9 @@ a:focus-visible {
 }
 
 /* A detail left blank in Settings renders nothing for visitors; drop its label too. */
-.kc-contact-label:has(+ p.kc-contact-value:empty),
-.kc-contact-label:has(+ .wp-block-buttons.kc-contact-value:not(:has(.wp-block-button))) {
+.kc-contact-details:not(:has(.kc-contact-value--phone a)) .kc-contact-label--phone,
+.kc-contact-details:not(:has(.kc-contact-value--email a)) .kc-contact-label--email,
+.kc-contact-label:has(+ .kc-contact-value:empty) {
 	display: none;
 }
 

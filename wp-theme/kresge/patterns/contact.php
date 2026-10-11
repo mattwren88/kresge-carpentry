@@ -32,20 +32,20 @@ $kresge_details = array(
 			<!-- wp:group {"className":"kc-contact-details","layout":{"type":"default"}} -->
 			<div class="wp-block-group kc-contact-details">
 			<?php foreach ( $kresge_details as $kresge_key => list( $kresge_label, $kresge_href ) ) : ?>
-				<!-- wp:paragraph {"className":"kc-contact-label"} -->
-				<p class="kc-contact-label"><?php echo esc_html( $kresge_label ); ?></p>
+				<!-- wp:paragraph {"className":"kc-contact-label kc-contact-label--<?php echo esc_attr( $kresge_key ); ?>"} -->
+				<p class="kc-contact-label kc-contact-label--<?php echo esc_attr( $kresge_key ); ?>"><?php echo esc_html( $kresge_label ); ?></p>
 				<!-- /wp:paragraph -->
 				<?php if ( $kresge_href ) : ?>
-				<!-- wp:buttons {"className":"kc-contact-value"} -->
-				<div class="wp-block-buttons kc-contact-value">
+				<!-- wp:buttons {"className":"kc-contact-value kc-contact-value--<?php echo esc_attr( $kresge_key ); ?>"} -->
+				<div class="wp-block-buttons kc-contact-value kc-contact-value--<?php echo esc_attr( $kresge_key ); ?>">
 					<!-- wp:button {"className":"kc-text-link","metadata":{"bindings":{"text":{"source":"kresge/business","args":{"key":"<?php echo esc_attr( $kresge_key ); ?>"}},"url":{"source":"kresge/business","args":{"key":"<?php echo esc_attr( $kresge_href ); ?>"}}}}} -->
 					<div class="wp-block-button kc-text-link"><a class="wp-block-button__link wp-element-button" href="#contact"><?php echo esc_html( $kresge_label ); ?></a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
 				<?php else : ?>
-				<!-- wp:paragraph {"className":"kc-contact-value","metadata":{"bindings":{"content":{"source":"kresge/business","args":{"key":"<?php echo esc_attr( $kresge_key ); ?>"}}}}} -->
-				<p class="kc-contact-value"><?php echo esc_html( $kresge_label ); ?></p>
+				<!-- wp:paragraph {"className":"kc-contact-value kc-contact-value--<?php echo esc_attr( $kresge_key ); ?>","metadata":{"bindings":{"content":{"source":"kresge/business","args":{"key":"<?php echo esc_attr( $kresge_key ); ?>"}}}}} -->
+				<p class="kc-contact-value kc-contact-value--<?php echo esc_attr( $kresge_key ); ?>"><?php echo esc_html( $kresge_label ); ?></p>
 				<!-- /wp:paragraph -->
 				<?php endif; ?>
 			<?php endforeach; ?>

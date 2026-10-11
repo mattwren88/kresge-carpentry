@@ -28,6 +28,11 @@ async (page) => {
     const faq = walk(be.getBlocks()).find(b => (b.attributes.className || '').includes('kc-faq'));
     return be.canInsertBlockType('core/details', faq.clientId);
   });
+  results.otherSectionsStayLocked = await page.evaluate(() => {
+    const be = wp.data.select('core/block-editor');
+    const sections = be.getBlocks().filter(b => !(b.attributes.anchor === 'faq'));
+    return sections.every(b => be.getTemplateLock(b.clientId) === 'contentOnly' && !be.canInsertBlockType('core/paragraph', b.clientId));
+  });
   await page.goto(`${BASE}/wp-admin/`);
 
   // With one project, no orphaned "More recent builds" heading.
@@ -52,6 +57,8 @@ async (page) => {
   results.visitorsDontSeeAdminHint = !anonHtml.includes('Add in Settings');
   results.adminsSeeHint = adminHtml.includes('Add in Settings');
   results.noEmptyHrefLinks = !/<a [^>]*href=""/.test(anonHtml);
+  await anon.goto(`${BASE}/`);
+  results.blankDetailLabelsHidden = await anon.evaluate(() => ['phone', 'email', 'service_area'].every(k => getComputedStyle(document.querySelector(`.kc-contact-label--${k}`)).display === 'none'));
   await page.goto(`${BASE}/wp-admin/options-general.php?page=kresge-business`);
   for (const k of Object.keys(saved)) await page.fill(`#kresge-${k}`, saved[k]);
   await page.click('#submit');

@@ -46,8 +46,10 @@ npm run wp
 
 Open http://127.0.0.1:9400 (you're logged in as admin automatically). Each start builds a fresh site from `wp-dev/blueprint.json` and `wp-dev/seed.php`: the 4 projects, homepage and business details from this page. **Changes made in wp-admin are lost when the server stops.**
 
-`wp-dev/check.sh header projects business homepage templates` runs smoke checks against the running site.
+`wp-dev/check.sh header projects business homepage templates` runs smoke checks against the running site. `wp-dev/review-checks.js` covers the editing and empty-state edge cases; run it through Playwright (`browser_run_code` with that file) while the site is up.
 
 ### Deploy
 
 Zip `wp-theme/kresge` and `wp-plugin/kresge-core` separately. On the host: Plugins → Add New → Upload (Kresge Core), Appearance → Themes → Add New → Upload (Kresge Carpentry), install Fluent Forms, then create a page from the Kresge section patterns and set it as the homepage (Settings → Reading). Seed content does not ship with the theme.
+
+Sections inserted from the pattern inserter use WordPress's own section editing: text and photos are editable in place, and structural changes (like adding an FAQ question) go through the section's **Edit pattern** button. The local seed inserts the sections as plain blocks, where the FAQ list accepts new questions directly.
