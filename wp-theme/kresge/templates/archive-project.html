@@ -1,0 +1,41 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","anchor":"main","className":"kc-section","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<main class="wp-block-group kc-section" id="main">
+	<!-- wp:group {"className":"kc-section-header","layout":{"type":"constrained","contentSize":"900px"}} -->
+	<div class="wp-block-group kc-section-header">
+		<!-- wp:paragraph {"align":"center","className":"kc-eyebrow"} -->
+		<p class="has-text-align-center kc-eyebrow">Recent work</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:heading {"level":1,"textAlign":"center","fontSize":"x-large"} -->
+		<h1 class="wp-block-heading has-text-align-center has-x-large-font-size">Built with care, start to finish</h1>
+		<!-- /wp:heading -->
+	</div>
+	<!-- /wp:group -->
+	<!-- wp:query {"queryId":20,"query":{"inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template {"className":"kc-projects-grid","layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"260px"}} -->
+			<!-- wp:group {"className":"kc-project-card","layout":{"type":"default"}} -->
+			<div class="wp-block-group kc-project-card">
+				<!-- wp:post-featured-image {"isLink":true,"height":"200px","className":"kc-project-photo"} /-->
+				<!-- wp:group {"className":"kc-project-body","layout":{"type":"default"}} -->
+				<div class="wp-block-group kc-project-body">
+					<!-- wp:post-terms {"term":"project_type","className":"kc-tag"} /-->
+					<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large"} /-->
+					<!-- wp:post-excerpt {"excerptLength":30} /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"div"} /-->

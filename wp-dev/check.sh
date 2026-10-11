@@ -54,4 +54,17 @@ check_homepage() {
 	ok "homepage sections, projects, form"
 }
 
+check_templates() {
+	local page
+	[ "$(code /projects/)" = 200 ] || fail "/projects/ archive"
+	grep -q 'class="[^"]*kc-project-card' <<<"$(get /projects/)" || fail "archive uses project cards"
+	page=$(get /projects/elevated-deck-stair-rebuild/)
+	grep -q 'Elevated deck' <<<"$page" || fail "single project title"
+	grep -q 'Plan a similar project' <<<"$page" || fail "single project CTA"
+	grep -q 'class="[^"]*kc-header' <<<"$page" || fail "single project header"
+	[ "$(code /projects/zzqx-nope/)" = 404 ] || fail "404 status"
+	grep -q 'Back to home' <<<"$(get /projects/zzqx-nope/)" || fail "404 template"
+	ok "archive, single project, 404"
+}
+
 for check in ${@+"$@"}; do "check_$check"; done
