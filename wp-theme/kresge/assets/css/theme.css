@@ -423,6 +423,16 @@ a:focus-visible {
 	background: var(--wp--preset--color--line);
 }
 
+/* A featured project without a photo keeps the image slot. */
+.kc-featured > .wp-block-column:first-child:not(:has(.kc-featured-photo))::before {
+	content: "";
+	display: block;
+	aspect-ratio: 4 / 3;
+	border-radius: var(--kc-radius-lg);
+	border: 1px solid var(--wp--preset--color--line);
+	background: var(--wp--preset--color--white);
+}
+
 .kc-featured-body .wp-block-post-title {
 	font-size: clamp(1.6rem, 2.6vw, 2.1rem);
 	line-height: 1.15;
@@ -854,11 +864,29 @@ a:focus-visible {
 		z-index: 100;
 	}
 
-	.kc-header {
+	/*
+	 * The blur lives on a pseudo-element: backdrop-filter on the header itself
+	 * would trap the fixed-position menu overlay inside the header's box.
+	 */
+	.kc-header.has-background {
+		position: relative;
 		padding-block: 0.8rem;
+		background: transparent;
+		border-bottom: 1px solid var(--kc-accent-edge);
+	}
+
+	.kc-header::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
 		background: rgba(20, 30, 22, 0.92);
 		backdrop-filter: blur(8px);
-		border-bottom: 1px solid var(--kc-accent-edge);
+	}
+
+	/* Keep anchored sections clear of the sticky header. */
+	main [id] {
+		scroll-margin-top: 80px;
 	}
 
 	.kc-header .kc-brand-sub,

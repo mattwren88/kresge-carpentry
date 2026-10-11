@@ -5,6 +5,6 @@
  * @package kresge
  */
 
-foreach ( array( 'setup', 'post-types', 'business-details', 'patterns' ) as $kresge_file ) {
+foreach ( array( 'setup', 'patterns' ) as $kresge_file ) {
 	require_once __DIR__ . "/inc/{$kresge_file}.php";
 }

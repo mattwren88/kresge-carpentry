@@ -3,7 +3,7 @@
  * Business details: one settings page feeding the header, contact section,
  * footer (via a Block Bindings source) and LocalBusiness structured data.
  *
- * @package kresge
+ * @package kresge-core
  */
 
 const KRESGE_BUSINESS_FIELDS = array(
@@ -58,8 +58,8 @@ add_action(
 	'admin_menu',
 	function () {
 		add_options_page(
-			__( 'Business details', 'kresge' ),
-			__( 'Business details', 'kresge' ),
+			__( 'Business details', 'kresge-core' ),
+			__( 'Business details', 'kresge-core' ),
 			'manage_options',
 			'kresge-business',
 			'kresge_render_business_page'
@@ -73,8 +73,8 @@ add_action(
 function kresge_render_business_page() {
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Business details', 'kresge' ); ?></h1>
-		<p><?php esc_html_e( 'Shown in the header, contact section, footer and search results.', 'kresge' ); ?></p>
+		<h1><?php esc_html_e( 'Business details', 'kresge-core' ); ?></h1>
+		<p><?php esc_html_e( 'Shown in the header, contact section, footer and search results.', 'kresge-core' ); ?></p>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'kresge_business' ); ?>
 			<table class="form-table" role="presentation">
@@ -97,7 +97,7 @@ add_action(
 		register_block_bindings_source(
 			'kresge/business',
 			array(
-				'label'              => __( 'Business details', 'kresge' ),
+				'label'              => __( 'Business details', 'kresge-core' ),
 				'get_value_callback' => function ( array $source_args ) {
 					$key = $source_args['key'] ?? '';
 					switch ( $key ) {
@@ -108,7 +108,7 @@ add_action(
 							return $email ? 'mailto:' . $email : '';
 						default:
 							$value = kresge_business( $key );
-							return '' !== $value ? esc_html( $value ) : esc_html__( 'Add in Settings → Business details', 'kresge' );
+							return '' !== $value ? esc_html( $value ) : esc_html__( 'Add in Settings → Business details', 'kresge-core' );
 					}
 				},
 			)
@@ -125,7 +125,7 @@ add_action(
 				'@type'      => 'LocalBusiness',
 				'name'       => get_bloginfo( 'name' ),
 				'url'        => home_url( '/' ),
-				'image'      => get_theme_file_uri( 'assets/images/logo.jpg' ),
+				'image'      => wp_get_attachment_image_url( (int) get_option( 'site_logo' ), 'full' ),
 				'telephone'  => kresge_business( 'phone' ),
 				'email'      => kresge_business( 'email' ),
 				'areaServed' => kresge_business( 'service_area' ),
