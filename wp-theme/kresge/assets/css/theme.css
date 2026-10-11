@@ -238,6 +238,613 @@ a:focus-visible {
 	font-weight: 600;
 }
 
+/* ---------- Sections ---------- */
+
+.kc-section {
+	padding-block: 3.5rem;
+}
+
+.kc-section-header {
+	margin-bottom: 2rem;
+}
+
+.kc-section-header h2 {
+	margin-block: 0 0.35em;
+}
+
+.kc-section-sub {
+	max-width: 640px;
+	margin-inline: auto;
+}
+
+/* ---------- Hero ---------- */
+
+.kc-hero {
+	color: var(--kc-ink-on-dark);
+	margin-block-start: 0;
+}
+
+.kc-hero-grid.wp-block-columns {
+	margin: 0;
+	gap: 0;
+	min-height: 560px;
+	align-items: stretch !important;
+}
+
+.kc-hero-copy.wp-block-column {
+	flex-basis: 51% !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 3rem 1.4rem 3.5rem max(calc((100vw - 1200px) / 2 + 1.4rem), 1.4rem);
+	max-width: 720px;
+}
+
+.kc-hero .kc-eyebrow {
+	color: var(--kc-ink-on-dark-quiet);
+	margin-bottom: 0.9rem;
+}
+
+.kc-hero h1 {
+	color: var(--kc-ink-on-dark);
+	letter-spacing: -0.01em;
+	margin: 0 0 1rem;
+}
+
+.kc-lede {
+	font-size: 1.1rem;
+	line-height: 1.55;
+	color: var(--kc-ink-on-dark-lede);
+	max-width: 520px;
+	margin: 0 0 1.6rem;
+}
+
+.kc-hero-actions {
+	gap: 1.2rem;
+	align-items: center;
+}
+
+.kc-link-quiet .wp-block-button__link {
+	background: none;
+	padding-inline: 0.2rem;
+	color: var(--kc-ink-on-dark-faint);
+	box-shadow: none;
+}
+
+.kc-link-quiet .wp-block-button__link:hover {
+	background: none;
+	color: #fff;
+}
+
+.kc-hero-photo.wp-block-column {
+	position: relative;
+	overflow: hidden;
+	background: var(--wp--preset--color--forest-deep);
+	min-height: 380px;
+}
+
+.kc-hero-photo .wp-block-image,
+.kc-hero-photo img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	object-fit: cover;
+}
+
+.kc-hero-photo::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(28, 43, 30, 0.35) 0%, rgba(28, 43, 30, 0) 30%);
+	pointer-events: none;
+}
+
+/* ---------- Trust strip ---------- */
+
+.kc-trust {
+	border-bottom: 1px solid var(--wp--preset--color--line);
+	padding-block: 1.1rem;
+	margin-block-start: 0;
+}
+
+.kc-trust-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 1rem;
+	font-size: 0.88rem;
+}
+
+.kc-trust-list li {
+	color: var(--wp--preset--color--muted);
+}
+
+.kc-trust-list strong {
+	font-family: var(--wp--preset--font-family--serif);
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 1;
+	color: var(--wp--preset--color--sage-dark);
+	margin-right: 0.3rem;
+}
+
+/* ---------- Cards ---------- */
+
+.kc-card,
+.kc-project-card {
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--kc-radius-md);
+	box-shadow: var(--kc-shadow-md);
+}
+
+.kc-card {
+	padding: 1.3rem 1.4rem;
+}
+
+.kc-card h3 {
+	margin: 0 0 0.35rem;
+}
+
+.kc-card p {
+	margin: 0;
+}
+
+.kc-card ul {
+	margin: 0.6rem 0 0;
+	padding-left: 1.1rem;
+}
+
+.kc-grid {
+	gap: 1.2rem;
+}
+
+/* ---------- Work ---------- */
+
+.kc-featured.wp-block-columns {
+	gap: 2.4rem;
+	margin: 0;
+}
+
+.kc-featured-photo,
+.kc-featured-photo img {
+	border-radius: var(--kc-radius-lg);
+}
+
+.kc-featured-photo {
+	overflow: hidden;
+	box-shadow: var(--kc-shadow-overlay);
+	background: var(--wp--preset--color--line);
+}
+
+.kc-featured-body .wp-block-post-title {
+	font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+	line-height: 1.15;
+	margin: 0 0 0.7rem;
+}
+
+.kc-featured-body .wp-block-post-title a,
+.kc-project-card .wp-block-post-title a {
+	color: inherit;
+}
+
+.kc-featured-body .wp-block-post-terms a {
+	color: inherit;
+}
+
+.kc-featured-body .wp-block-post-excerpt__excerpt {
+	max-width: 52ch;
+	color: var(--wp--preset--color--muted);
+}
+
+.kc-more {
+	font-weight: 600;
+}
+
+.kc-subhead {
+	margin: 3.5rem 0 1.4rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.kc-subhead h3 {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 0.78rem;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-weight: 700;
+	color: var(--wp--preset--color--muted);
+	margin: 0;
+	flex-shrink: 0;
+}
+
+.kc-subhead-rule.wp-block-separator {
+	flex: 1;
+	margin: 0;
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--line);
+	opacity: 1;
+}
+
+.kc-projects-grid {
+	gap: 1.2rem;
+}
+
+.kc-project-card {
+	overflow: hidden;
+	height: 100%;
+}
+
+.kc-project-photo {
+	margin: 0;
+	border-bottom: 1px solid var(--wp--preset--color--line);
+}
+
+/* A project saved without a photo keeps the card's shape. */
+.kc-project-card:not(:has(.kc-project-photo))::before {
+	content: "";
+	display: block;
+	height: 200px;
+	background: var(--wp--preset--color--mist);
+	border-bottom: 1px solid var(--wp--preset--color--line);
+}
+
+.kc-project-body {
+	padding: 1rem 1.1rem 1.2rem;
+}
+
+.kc-project-body .wp-block-post-title {
+	font-size: 1.15rem;
+	line-height: 1.25;
+	margin: 0 0 0.4rem;
+}
+
+.kc-project-body .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	font-size: 0.95rem;
+}
+
+.kc-tag {
+	display: inline-block;
+	margin-bottom: 0.7rem;
+	padding: 0.35rem 0.7rem;
+	border-radius: 999px;
+	background: var(--kc-accent-soft);
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+.kc-tag a {
+	color: #2A5438;
+}
+
+/* ---------- Process ---------- */
+
+.kc-timeline {
+	gap: 1rem;
+}
+
+.kc-step {
+	gap: 0.9rem;
+	padding: 1rem 1.1rem;
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-left: 3px solid transparent;
+	border-radius: var(--kc-radius-md);
+	box-shadow: var(--kc-shadow-md);
+	transition: border-color 0.25s ease;
+}
+
+.kc-step:hover {
+	border-left-color: var(--wp--preset--color--sage);
+}
+
+.kc-step h3 {
+	margin: 0 0 0.35rem;
+}
+
+.kc-step p {
+	margin: 0;
+}
+
+.kc-step .kc-step-num {
+	flex: 0 0 34px;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--sage);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+}
+
+/* ---------- Testimonial ---------- */
+
+.kc-quote.wp-block-quote {
+	border: 0;
+	margin: 0 auto;
+	padding: 1.5rem 1.4rem 0;
+	text-align: center;
+	position: relative;
+}
+
+.kc-quote::before {
+	content: "\201C";
+	position: absolute;
+	top: -2.4rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 7rem;
+	line-height: 1;
+	color: var(--wp--preset--color--sage);
+	opacity: 0.28;
+	pointer-events: none;
+}
+
+.kc-quote p {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+	line-height: 1.35;
+	color: var(--wp--preset--color--forest);
+	letter-spacing: -0.005em;
+}
+
+.kc-quote cite {
+	display: block;
+	margin-top: 1.4rem;
+	font-style: normal;
+	font-size: 0.92rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.kc-quote cite strong {
+	color: var(--wp--preset--color--forest);
+}
+
+/* ---------- FAQ ---------- */
+
+.kc-faq {
+	gap: 0.7rem;
+}
+
+.kc-faq .wp-block-details {
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--kc-radius-md);
+	padding: 1rem 1.2rem;
+	box-shadow: var(--kc-shadow-sm);
+	margin: 0;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kc-faq .wp-block-details[open] {
+	border-color: var(--kc-accent-edge);
+	box-shadow: var(--kc-shadow-md);
+}
+
+.kc-faq summary {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.1rem;
+	line-height: 1.35;
+	color: var(--wp--preset--color--forest);
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+
+.kc-faq summary::-webkit-details-marker {
+	display: none;
+}
+
+.kc-faq summary::after {
+	content: "+";
+	flex-shrink: 0;
+	width: 1.7rem;
+	height: 1.7rem;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	background: var(--kc-accent-soft);
+	color: var(--wp--preset--color--sage-dark);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 1.2rem;
+	line-height: 1;
+}
+
+.kc-faq [open] summary::after {
+	content: "\2212";
+	background: var(--wp--preset--color--sage);
+	color: #fff;
+}
+
+.kc-faq .wp-block-details p {
+	margin: 0.85rem 0 0;
+}
+
+/* ---------- Contact ---------- */
+
+.kc-contact {
+	background: #EDF2E9;
+}
+
+.kc-contact-card.wp-block-columns {
+	margin: 0;
+	gap: 1.4rem;
+	padding: 2rem;
+	border-radius: var(--kc-radius-lg);
+	border: 1px solid var(--wp--preset--color--line);
+	box-shadow: var(--kc-shadow-overlay);
+	background: radial-gradient(circle at top left, rgba(74, 124, 89, 0.1), transparent 55%), var(--wp--preset--color--white);
+}
+
+.kc-contact-intro h2 {
+	font-size: 1.6rem;
+	margin: 0 0 0.35em;
+}
+
+.kc-contact-details {
+	margin-top: 1.5rem;
+}
+
+.kc-contact-details > * {
+	margin-block: 0;
+}
+
+.kc-contact-label {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 600;
+	margin-top: 1rem !important;
+}
+
+.kc-contact-label:first-child {
+	margin-top: 0 !important;
+}
+
+.kc-contact-value,
+.kc-contact-value .wp-block-button__link {
+	font-weight: 600;
+	color: var(--wp--preset--color--forest);
+}
+
+.kc-contact .kc-text-link .wp-block-button__link {
+	background: none;
+	padding: 0;
+	font-size: 1rem;
+	color: var(--wp--preset--color--forest);
+}
+
+.kc-contact .kc-text-link .wp-block-button__link:hover {
+	color: var(--wp--preset--color--sage-dark);
+}
+
+/* Fluent Forms fields, matched to the theme */
+.kc-contact-form .ff-el-group {
+	margin-bottom: 0.8rem;
+}
+
+.kc-contact-form .ff-el-input--label label {
+	font-weight: 600;
+	color: var(--wp--preset--color--forest);
+}
+
+.kc-contact-form .ff-el-form-control {
+	padding: 0.8rem 0.9rem;
+	border-radius: var(--kc-radius-sm);
+	border: 1px solid var(--wp--preset--color--line);
+	font-family: inherit;
+	font-size: 1rem;
+	color: var(--wp--preset--color--forest);
+	background: var(--wp--preset--color--white);
+	min-height: 47px;
+}
+
+.kc-contact-form .ff-el-form-control:focus {
+	border-color: var(--wp--preset--color--sage);
+	outline: none;
+	box-shadow: 0 0 0 3px var(--kc-accent-tint);
+}
+
+.kc-contact-form .ff-btn-submit {
+	width: 100%;
+	border-radius: 999px !important;
+	background: var(--wp--preset--color--sage) !important;
+	color: #fff !important;
+	font-weight: 600;
+	padding: 0.8rem 1.2rem;
+	border: 0;
+}
+
+.kc-contact-form .ff-btn-submit:hover {
+	background: var(--wp--preset--color--sage-dark) !important;
+}
+
+/* ---------- Responsive: sections ---------- */
+
+@media (max-width: 900px) {
+	.kc-hero-grid.wp-block-columns {
+		flex-direction: column;
+		min-height: 0;
+	}
+
+	.kc-hero-copy.wp-block-column {
+		flex-basis: auto !important;
+		max-width: none;
+		padding: 2.5rem 1rem 2rem;
+	}
+
+	/* Beats core's stacked-columns flex-basis: 100% !important. */
+	.kc-hero .kc-hero-grid > .kc-hero-photo.wp-block-column {
+		flex-basis: auto !important;
+		min-height: 0;
+	}
+
+	/* Stacked: the photo flows normally and sets the column's height. */
+	.kc-hero-photo .wp-block-image,
+	.kc-hero-photo img {
+		position: static;
+		aspect-ratio: 4 / 3;
+		height: auto;
+	}
+
+	.kc-hero-photo::after {
+		display: none;
+	}
+
+	.kc-featured.wp-block-columns {
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.kc-featured.wp-block-columns > .wp-block-column {
+		flex-basis: auto !important;
+		width: 100%;
+	}
+
+	.kc-contact-card.wp-block-columns {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 600px) {
+	.kc-hero h1 {
+		font-size: 2rem;
+	}
+
+	.kc-section {
+		padding-block: 3rem;
+	}
+
+	.kc-trust-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem 1rem;
+	}
+
+	.kc-trust-list li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.kc-contact-card.wp-block-columns {
+		padding: 1.4rem;
+	}
+}
+
 /* ---------- Responsive: header ---------- */
 
 @media (max-width: 900px) {
@@ -279,6 +886,11 @@ a:focus-visible {
 }
 
 @media (max-width: 600px) {
+	/* The admin bar stops being fixed below 600px. */
+	header.wp-block-template-part {
+		top: 0;
+	}
+
 	/* Icon-only call button; the number stays in the accessible name. */
 	.kc-phone .wp-block-button__link {
 		min-width: 44px;

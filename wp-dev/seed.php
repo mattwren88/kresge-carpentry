@@ -105,3 +105,22 @@ update_option(
 		'service_area' => 'Local towns within ~30 mi',
 	)
 );
+
+// Homepage: the theme's section patterns, in order. The editor turns each
+// pattern reference into editable blocks the first time the owner opens it.
+$kresge_home = wp_insert_post(
+	array(
+		'post_type'    => 'page',
+		'post_status'  => 'publish',
+		'post_title'   => 'Home',
+		'post_content' => implode(
+			"\n\n",
+			array_map(
+				fn( $slug ) => '<!-- wp:pattern {"slug":"kresge/' . $slug . '"} /-->',
+				array( 'hero', 'trust-strip', 'services', 'work', 'process', 'testimonial', 'faq', 'contact' )
+			)
+		),
+	)
+);
+update_option( 'show_on_front', 'page' );
+update_option( 'page_on_front', $kresge_home );

@@ -37,4 +37,21 @@ check_business() {
 	ok "business bindings + JSON-LD"
 }
 
+check_homepage() {
+	local id
+	grep -q 'class="[^"]*kc-hero' <<<"$home" || fail "hero section"
+	for id in services work process faq contact; do
+		grep -q "id=\"$id\"" <<<"$home" || fail "section #$id"
+	done
+	grep -q 'class="[^"]*kc-trust' <<<"$home" || fail "trust strip"
+	grep -q 'class="[^"]*kc-quote' <<<"$home" || fail "testimonial"
+	[ "$(grep -o 'kc-featured' <<<"$home" | wc -l | tr -d ' ')" -ge 1 ] || fail "featured project"
+	grep -q 'Elevated deck &amp; stair rebuild\|Elevated deck &#038; stair rebuild' <<<"$home" || fail "newest project featured"
+	[ "$(grep -o 'class="[^"]*kc-project-card' <<<"$home" | wc -l | tr -d ' ')" = 3 ] || fail "3 project cards"
+	grep -q 'fluentform' <<<"$home" || fail "contact form"
+	grep -q '\[fluentform' <<<"$home" && fail "raw shortcode printed"
+	grep -q '<details' <<<"$home" || fail "FAQ details"
+	ok "homepage sections, projects, form"
+}
+
 for check in ${@+"$@"}; do "check_$check"; done
