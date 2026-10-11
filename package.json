@@ -1,0 +1,11 @@
+{
+  "name": "kresge-carpentry",
+  "private": true,
+  "scripts": {
+    "wp": "node_modules/node/bin/node node_modules/@wp-playground/cli/wp-playground.js server --port=9400 --mount=./wp-theme/kresge:/wordpress/wp-content/themes/kresge --mount=./wp-plugin/kresge-core:/wordpress/wp-content/plugins/kresge-core --mount=./wp-dev:/wordpress/wp-content/kresge-dev --mount=./assets/images:/wordpress/wp-content/kresge-dev/images --blueprint=./wp-dev/blueprint.json --login"
+  },
+  "devDependencies": {
+    "@wp-playground/cli": "3.1.55",
+    "node": "22"
+  }
+}
